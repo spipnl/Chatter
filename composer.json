@@ -1,0 +1,19 @@
+{
+  "name" : "spipnl/chatter",
+  "description" : "Chat application built with ZF2 and Doctrine 2",
+  "require" : {
+    "php" : ">=5.3.3",
+    "zendframework/zendframework" : "=2.3.3",
+    "doctrine/doctrine-orm-module" : "=0.8.0",
+    "zendframework/zend-developer-tools" : "=dev-master@dev"
+  },
+  "keywords" : [ 
+    "chat",
+    "zf2",
+    "doctrine2"
+  ],
+  "minimum-stability" : "stable",
+  "prefer-stable": true,
+  "license" : "BSD-3-Clause",
+  "homepage" : "http://framework.zend.com/"
+}

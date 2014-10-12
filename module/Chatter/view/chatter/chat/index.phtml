@@ -1,0 +1,62 @@
+<?php
+
+$title = 'Chats';
+$this->headTitle($title);
+?>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header"><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">All the chats</div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->chats as $chat) : ?>
+                                <tr>
+                                    <td><?php echo $chat->getId(); ?></td>
+                                    <td><?php echo $this->escapeHtml($chat->getTitle()); ?></td>
+                                    <td><a href="<?php echo $this->url('chat', array('action'=>'edit', 'id' => $chat->getId())); ?>">Edit</a></td>
+                                    <td><a href="<?php echo $this->url('chat', array('action'=>'delete', 'id' => $chat->getId())); ?>">Delete</a></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-primary" href="<?php echo $this->url('chat', array('action'=>'add'));?>">Add new chat</a>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+
+
+
+
