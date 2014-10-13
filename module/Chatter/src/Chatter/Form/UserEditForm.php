@@ -13,7 +13,7 @@ class UserEditForm extends Form
         parent::__construct('user-edit-form');
         
         $this->setAttribute('method', 'post')
-             ->setHydrator(new DoctrineHydrator($em, 'Chatter\Model\User'))
+             ->setHydrator(new DoctrineHydrator($em, 'Chatter\Entity\User'))
              ->setInputFilter(new InputFilter());
         
         $fieldset = new UserFieldset($em);

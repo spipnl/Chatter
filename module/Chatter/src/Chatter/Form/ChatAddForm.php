@@ -13,7 +13,7 @@ class ChatAddForm extends Form
         parent::__construct('chat-add-form');
         
         $this->setAttribute('method', 'post')
-             ->setHydrator(new DoctrineHydrator($em, 'Chatter\Model\Chat'))
+             ->setHydrator(new DoctrineHydrator($em, 'Chatter\Entity\Chat'))
              ->setInputFilter(new InputFilter());
         
         $fieldset = new ChatFieldset($em);

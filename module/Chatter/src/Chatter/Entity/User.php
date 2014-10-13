@@ -3,8 +3,10 @@ namespace Chatter\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
- * @\Doctrine\ORM\Mapping\MappedSuperclass
+ * @\Doctrine\ORM\Mapping\Entity
+ * @\Doctrine\ORM\Mapping\Table(name="user",options={"engine"="InnoDB","collate"="utf8_general_ci"})
  */
 class User {
     /**

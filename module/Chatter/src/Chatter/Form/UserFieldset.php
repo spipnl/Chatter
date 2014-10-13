@@ -12,7 +12,7 @@ class UserFieldset extends Fieldset implements InputFilterProviderInterface
     {
         parent::__construct('user');
         
-        $this->setHydrator(new DoctrineHydrator($em, 'Chatter\Model\User'));
+        $this->setHydrator(new DoctrineHydrator($em, 'Chatter\Entity\User'));
              //->setObject(new Chat());
         
         $this->add(array(

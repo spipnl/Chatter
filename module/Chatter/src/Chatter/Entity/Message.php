@@ -2,7 +2,8 @@
 namespace Chatter\Entity;
 
 /**
- * @\Doctrine\ORM\Mapping\MappedSuperclass
+ * @\Doctrine\ORM\Mapping\Entity
+ * @\Doctrine\ORM\Mapping\Table(name="message",options={"engine"="InnoDB","collate"="utf8_general_ci"})
  */
 class Message {
     /**

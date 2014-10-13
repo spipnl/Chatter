@@ -12,14 +12,14 @@ class CreateBlogPostForm extends Form
         parent::__construct('create-blog-post-form');
 
         // The form will hydrate an object of type "BlogPost"
-        $this->setHydrator(new DoctrineHydrator($objectManager, 'Chatter\Model\BlogPost'));
+        $this->setHydrator(new DoctrineHydrator($objectManager, 'Chatter\Entity\BlogPost'));
 
         // Add the user fieldset, and set it as the base fieldset
         $blogPostFieldset = new BlogPostFieldset($objectManager);
         $blogPostFieldset->setUseAsBaseFieldset(true);
         $this->add($blogPostFieldset);
 
-        // … add CSRF and submit elements …
+        // ï¿½ add CSRF and submit elements ï¿½
         $this->add(array(
             'name' => 'submit',
             'type' => 'Submit',

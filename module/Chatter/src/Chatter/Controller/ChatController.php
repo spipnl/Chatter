@@ -3,7 +3,7 @@ namespace Chatter\Controller;
 
 use Chatter\Form\ChatAddForm;
 use Chatter\Form\ChatEditForm;
-use Chatter\Model\Chat;
+use Chatter\Entity\Chat;
 
 class ChatController extends AbstractActionController
 {
@@ -11,7 +11,7 @@ class ChatController extends AbstractActionController
     {
         $chats = $this->getEntityManager()->createQueryBuilder()
             ->select('c')
-            ->from('Chatter\Model\Chat', 'c')
+            ->from('Chatter\Entity\Chat', 'c')
             ->getQuery()
             ->getResult();
         
@@ -76,7 +76,7 @@ class ChatController extends AbstractActionController
         // Get the Chat with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
-            $chat = $this->getEntityManager()->find('Chatter\Model\Chat', $id);
+            $chat = $this->getEntityManager()->find('Chatter\Entity\Chat', $id);
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('chat', array(
                 'action' => 'index',
@@ -109,7 +109,7 @@ class ChatController extends AbstractActionController
         // Get the Chat with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
-            $chat = $this->getEntityManager()->find('Chatter\Model\Chat', $id);
+            $chat = $this->getEntityManager()->find('Chatter\Entity\Chat', $id);
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('chat', array(
                 'action' => 'index',

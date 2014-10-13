@@ -3,7 +3,7 @@ namespace Chatter\Controller;
 
 use Chatter\Form\UserAddForm;
 use Chatter\Form\UserEditForm;
-use Chatter\Model\User;
+use Chatter\Entity\User;
 
 class UserController extends AbstractActionController
 {
@@ -11,7 +11,7 @@ class UserController extends AbstractActionController
     {
         $users = $this->getEntityManager()->createQueryBuilder()
             ->select('u')
-            ->from('Chatter\Model\User', 'u')
+            ->from('Chatter\Entity\User', 'u')
             ->getQuery()
             ->getResult();
         
@@ -53,7 +53,7 @@ class UserController extends AbstractActionController
         // Get the User with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
-            $user = $this->getEntityManager()->find('Chatter\Model\User', $id);
+            $user = $this->getEntityManager()->find('Chatter\Entity\User', $id);
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('user', array(
                 'action' => 'index',
@@ -86,7 +86,7 @@ class UserController extends AbstractActionController
         // Get the User with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
-            $user = $this->getEntityManager()->find('Chatter\Model\User', $id);
+            $user = $this->getEntityManager()->find('Chatter\Entity\User', $id);
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('user', array(
                 'action' => 'index',

@@ -3,7 +3,7 @@ namespace Chatter\Controller;
 
 use Chatter\Form\MessageAddForm;
 use Chatter\Form\MessageEditForm;
-use Chatter\Model\Message;
+use Chatter\Entity\Message;
 
 class MessageController extends AbstractActionController
 {
@@ -11,7 +11,7 @@ class MessageController extends AbstractActionController
     {
         $messages = $this->getEntityManager()->createQueryBuilder()
                            ->select('m')
-                           ->from('Chatter\Model\Message', 'm')
+                           ->from('Chatter\Entity\Message', 'm')
                            ->getQuery()
                            ->getResult();
         
@@ -24,7 +24,7 @@ class MessageController extends AbstractActionController
     {
         $users = $this->getEntityManager()->createQueryBuilder()
                            ->select('u')
-                           ->from('Chatter\Model\User', 'u')
+                           ->from('Chatter\Entity\User', 'u')
                            ->getQuery()
                            ->getResult();
         
@@ -62,7 +62,7 @@ class MessageController extends AbstractActionController
         // Get the Message with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
-            $message = $this->getEntityManager()->find('Chatter\Model\Message', $id);
+            $message = $this->getEntityManager()->find('Chatter\Entity\Message', $id);
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('message', array(
                 'action' => 'index',
@@ -70,7 +70,7 @@ class MessageController extends AbstractActionController
         }
         
         //Test
-        $user = $this->getEntityManager()->find('Chatter\Model\User', 1);
+        $user = $this->getEntityManager()->find('Chatter\Entity\User', 1);
         $message->setUser($user);
         
         $form = new MessageEditForm($this->getEntityManager());
@@ -99,7 +99,7 @@ class MessageController extends AbstractActionController
         // Get the Message with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
-            $message = $this->getEntityManager()->find('Chatter\Model\Message', $id);
+            $message = $this->getEntityManager()->find('Chatter\Entity\Message', $id);
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('message', array(
                 'action' => 'index',

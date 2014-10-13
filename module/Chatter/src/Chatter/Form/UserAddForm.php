@@ -13,7 +13,7 @@ class UserAddForm extends Form
         parent::__construct('user-add-form');
         
         $this->setAttribute('method', 'post')
-             ->setHydrator(new DoctrineHydrator($em, 'Chatter\Model\User'))
+             ->setHydrator(new DoctrineHydrator($em, 'Chatter\Entity\User'))
              ->setInputFilter(new InputFilter());
         
         $fieldset = new UserFieldset($em);

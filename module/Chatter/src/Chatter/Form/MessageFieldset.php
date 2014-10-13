@@ -12,7 +12,7 @@ class MessageFieldset extends Fieldset implements InputFilterProviderInterface
     {
         parent::__construct('message');
         
-        $this->setHydrator(new DoctrineHydrator($em, 'Chatter\Model\Message'));
+        $this->setHydrator(new DoctrineHydrator($em, 'Chatter\Entity\Message'));
              //->setObject(new Chat());
         
         $this->add(array(

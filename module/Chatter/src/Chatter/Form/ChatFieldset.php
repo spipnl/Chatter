@@ -12,7 +12,7 @@ class ChatFieldset extends Fieldset implements InputFilterProviderInterface
     {
         parent::__construct('chat');
         
-        $this->setHydrator(new DoctrineHydrator($em, 'Chatter\Model\Chat'));
+        $this->setHydrator(new DoctrineHydrator($em, 'Chatter\Entity\Chat'));
              //->setObject(new Chat());
         
         $this->add(array(

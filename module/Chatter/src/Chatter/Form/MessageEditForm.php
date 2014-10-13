@@ -13,7 +13,7 @@ class MessageEditForm extends Form
         parent::__construct('message-edit-form');
         
         $this->setAttribute('method', 'post')
-             ->setHydrator(new DoctrineHydrator($em, 'Chatter\Model\Message'))
+             ->setHydrator(new DoctrineHydrator($em, 'Chatter\Entity\Message'))
              ->setInputFilter(new InputFilter());
         
         $fieldset = new MessageFieldset($em);
