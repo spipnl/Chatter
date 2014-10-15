@@ -1,20 +1,15 @@
 <?php
 namespace Chatter\Form;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\Form\Fieldset;
 
 class UserFieldset extends Fieldset implements InputFilterProviderInterface
 {
-    public function __construct(ObjectManager $em)
+    public function __construct()
     {
         parent::__construct('user');
-        
-        $this->setHydrator(new DoctrineHydrator($em, 'Chatter\Entity\User'));
-             //->setObject(new Chat());
-        
+
         $this->add(array(
             'type' => 'Zend\Form\Element\Hidden',
             'name' => 'id',

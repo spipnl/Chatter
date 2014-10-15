@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @\Doctrine\ORM\Mapping\Entity
- * @\Doctrine\ORM\Mapping\Table(name="user",options={"engine"="InnoDB","collate"="utf8_general_ci"})
+ * @\Doctrine\ORM\Mapping\Table(name="user")
  */
 class User {
     /**

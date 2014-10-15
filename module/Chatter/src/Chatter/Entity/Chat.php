@@ -3,7 +3,7 @@ namespace Chatter\Entity;
 
 /**
  * @\Doctrine\ORM\Mapping\Entity
- * @\Doctrine\ORM\Mapping\Table(name="chat",options={"engine"="InnoDB","collate"="utf8_general_ci"})
+ * @\Doctrine\ORM\Mapping\Table(name="chat")
  */
 class Chat {
     /**

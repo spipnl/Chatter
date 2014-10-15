@@ -8,20 +8,12 @@ use Zend\InputFilter\InputFilter;
 
 class UserAddForm extends Form
 {
-    public function __construct(ObjectManager $em)
+    public function __construct()
     {
         parent::__construct('user-add-form');
         
-        $this->setAttribute('method', 'post')
-             ->setHydrator(new DoctrineHydrator($em, 'Chatter\Entity\User'))
-             ->setInputFilter(new InputFilter());
-        
-        $fieldset = new UserFieldset($em);
-        //$chatFieldset->setName('chat');
-        //$chatFieldset->remove('id');
-        $fieldset->setUseAsBaseFieldset(true);
-        $this->add($fieldset);
-        
+        $this->setAttribute('method', 'post');
+
         $this->add(array(
             'name' => 'csrf',
             'type' => 'Zend\Form\Element\Csrf',

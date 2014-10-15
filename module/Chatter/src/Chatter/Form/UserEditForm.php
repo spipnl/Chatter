@@ -8,20 +8,12 @@ use Zend\InputFilter\InputFilter;
 
 class UserEditForm extends Form
 {
-    public function __construct(ObjectManager $em)
+    public function __construct()
     {
         parent::__construct('user-edit-form');
         
-        $this->setAttribute('method', 'post')
-             ->setHydrator(new DoctrineHydrator($em, 'Chatter\Entity\User'))
-             ->setInputFilter(new InputFilter());
-        
-        $fieldset = new UserFieldset($em);
-        //$fieldset->setName('chat');
-        //$fieldset->remove('id');
-        $fieldset->setUseAsBaseFieldset(true);
-        $this->add($fieldset);
-        
+        $this->setAttribute('method', 'post');
+
         $this->add(array(
             'name' => 'csrf',
             'type' => 'Zend\Form\Element\Csrf',

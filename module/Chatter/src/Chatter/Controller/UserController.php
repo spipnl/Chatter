@@ -23,7 +23,9 @@ class UserController extends AbstractActionController
     public function addAction()
     {
         $user = new User();
-        $form = new UserAddForm($this->getEntityManager());
+        $formManager = $this->getServiceLocator()->get('FormElementManager');
+        /** @var UserAddForm $form */
+        $form = $formManager->get('userAddForm');
         $form->bind($user);
         
         $request = $this->getRequest();
@@ -59,10 +61,12 @@ class UserController extends AbstractActionController
                 'action' => 'index',
             ));
         }
-        
-        $form = new UserEditForm($this->getEntityManager());
+
+        $formManager = $this->getServiceLocator()->get('FormElementManager');
+        /** @var UserEditForm $form */
+        $form = $formManager->get('userEditForm');
         $form->bind($user);
-        
+
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setData($request->getPost());
