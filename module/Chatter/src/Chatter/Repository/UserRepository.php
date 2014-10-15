@@ -4,7 +4,8 @@ namespace Chatter\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
+ * User Repository
  */
-class User extends EntityRepository
+class UserRepository extends EntityRepository
 {
 }

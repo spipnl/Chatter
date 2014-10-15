@@ -4,17 +4,17 @@ namespace Chatter\Controller;
 use Chatter\Form\UserAddForm;
 use Chatter\Form\UserEditForm;
 use Chatter\Entity\User;
+use Chatter\Service\UserService;
 
 class UserController extends AbstractActionController
 {
     public function indexAction()
     {
-        $users = $this->getEntityManager()->createQueryBuilder()
-            ->select('u')
-            ->from('Chatter\Entity\User', 'u')
-            ->getQuery()
-            ->getResult();
-        
+        /** @var UserService $userService */
+        $userService = $this->getServiceLocator()->get('userService');
+
+        $users = $userService->getAllUsers();
+
         return array(
             'users' => $users,
         );
@@ -55,8 +55,10 @@ class UserController extends AbstractActionController
         // Get the User with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
-            /** @var User $user */
-            $user = $this->getEntityManager()->find('Chatter\Entity\User', $id);
+            /** @var UserService $userService */
+            $userService = $this->getServiceLocator()->get('userService');
+
+            $user = $userService->getUserById($id);
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('user', array(
                 'action' => 'index',
@@ -83,11 +85,11 @@ class UserController extends AbstractActionController
             'form'  => $form,
         );
     }
-    
+
     public function deleteAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
-        
+
         // Get the User with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
@@ -97,9 +99,9 @@ class UserController extends AbstractActionController
                 'action' => 'index',
             ));
         }
-        
+
         $user->delete($this->getEntityManager());
-        
+
         return $this->redirect()->toRoute('user', array(
             'action' => 'index',
         ));
