@@ -2,9 +2,6 @@
 namespace Chatter\Form;
 
 use Zend\Form\Form;
-use Doctrine\Common\Persistence\ObjectManager;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-use Zend\InputFilter\InputFilter;
 
 class UserAddForm extends Form
 {

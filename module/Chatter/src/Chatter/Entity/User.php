@@ -21,13 +21,29 @@ class User {
     
     /** @\Doctrine\ORM\Mapping\OneToMany(targetEntity="Message", mappedBy="user", cascade={"persist"}) */
     protected $messages;
-    
+
+    /**
+     * @\Doctrine\ORM\Mapping\ManyToMany(targetEntity="User", mappedBy="myFriends")
+     **/
+    protected $friendsWithMe;
+
+    /**
+     * @\Doctrine\ORM\Mapping\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
+     * @\Doctrine\ORM\Mapping\JoinTable(name="friend",
+     *      joinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="friend_user_id", referencedColumnName="id")}
+     *      )
+     **/
+    protected $myFriends;
+
     /**
      * Never forget to initialize all your collections !
      */
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->friendsWithMe = new ArrayCollection();
+        $this->myFriends = new ArrayCollection();
     }
     
     /**
@@ -88,5 +104,21 @@ class User {
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFriendsWithMe()
+    {
+        return $this->friendsWithMe;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMyFriends()
+    {
+        return $this->myFriends;
     }
 }

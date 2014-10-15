@@ -55,6 +55,7 @@ class UserController extends AbstractActionController
         // Get the User with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
+            /** @var User $user */
             $user = $this->getEntityManager()->find('Chatter\Entity\User', $id);
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('user', array(
@@ -76,7 +77,7 @@ class UserController extends AbstractActionController
                 $this->redirect()->toRoute('user');
             }
         }
-        
+
         return array(
             'user' => $user,
             'form'  => $form,

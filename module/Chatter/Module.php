@@ -41,11 +41,11 @@ class Module implements FormElementProviderInterface
                     $entityManager = $locator->get('doctrine.entitymanager.orm_default');
 
                     $userAddForm = new UserAddForm();
-                    $userAddForm->setHydrator(new DoctrineObject($entityManager), 'Chatter\Entity\User');
+                    $userAddForm->setHydrator(new DoctrineObject($entityManager));
                     $userAddForm->setInputFilter(new InputFilter());
 
                     $userFieldset = new UserFieldset();
-                    $userFieldset->setHydrator(new DoctrineObject($entityManager), 'Chatter\Entity\User');
+                    $userFieldset->setHydrator(new DoctrineObject($entityManager));
 
                     $userFieldset->setUseAsBaseFieldset(true);
                     $userAddForm->add($userFieldset);
@@ -58,11 +58,11 @@ class Module implements FormElementProviderInterface
                     $entityManager = $locator->get('doctrine.entitymanager.orm_default');
 
                     $userEditForm = new UserEditForm();
-                    $userEditForm->setHydrator(new DoctrineObject($entityManager), 'Chatter\Entity\User');
+                    $userEditForm->setHydrator(new DoctrineObject($entityManager));
                     $userEditForm->setInputFilter(new InputFilter());
 
                     $userFieldset = new UserFieldset();
-                    $userFieldset->setHydrator(new DoctrineObject($entityManager), 'Chatter\Entity\User');
+                    $userFieldset->setHydrator(new DoctrineObject($entityManager));
 
                     $userFieldset->setUseAsBaseFieldset(true);
                     $userEditForm->add($userFieldset);
