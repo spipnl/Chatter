@@ -22,6 +22,9 @@ class UserController extends AbstractActionController
     
     public function addAction()
     {
+        /** @var UserService $userService */
+        $userService = $this->getServiceLocator()->get('userService');
+
         $user = new User();
         $formManager = $this->getServiceLocator()->get('FormElementManager');
         /** @var UserAddForm $form */
@@ -32,8 +35,7 @@ class UserController extends AbstractActionController
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                $this->getEntityManager()->persist($user);
-                $this->getEntityManager()->flush($user);
+                $userService->saveUser($user);
                 $this->redirect()->toRoute('user');
             }
         }
@@ -45,19 +47,19 @@ class UserController extends AbstractActionController
     
     public function editAction()
     {
+        /** @var UserService $userService */
+        $userService = $this->getServiceLocator()->get('userService');
+
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
             return $this->redirect()->toRoute('user', array(
                 'action' => 'add',
             ));
         }
-        
+
         // Get the User with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
-            /** @var UserService $userService */
-            $userService = $this->getServiceLocator()->get('userService');
-
             $user = $userService->getUserById($id);
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('user', array(
@@ -74,8 +76,7 @@ class UserController extends AbstractActionController
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                $this->getEntityManager()->persist($user);
-                $this->getEntityManager()->flush($user);
+                $userService->saveUser($user);
                 $this->redirect()->toRoute('user');
             }
         }
@@ -88,19 +89,22 @@ class UserController extends AbstractActionController
 
     public function deleteAction()
     {
+        /** @var UserService $userService */
+        $userService = $this->getServiceLocator()->get('userService');
+
         $id = (int) $this->params()->fromRoute('id', 0);
 
         // Get the User with the specified id. An exception is thrown
         // if it cannot be found, in which case go to the index page.
         try {
-            $user = $this->getEntityManager()->find('Chatter\Entity\User', $id);
+            $user = $userService->getUserById($id);
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('user', array(
                 'action' => 'index',
             ));
         }
 
-        $user->delete($this->getEntityManager());
+        $userService->deleteUser($user);
 
         return $this->redirect()->toRoute('user', array(
             'action' => 'index',

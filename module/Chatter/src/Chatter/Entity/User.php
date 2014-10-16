@@ -16,19 +16,23 @@ class User {
      */
     protected $id;
     
-    /** @\Doctrine\ORM\Mapping\Column(type="string") */
+    /**
+     * @\Doctrine\ORM\Mapping\Column(type="string")
+     */
     protected $name;
     
-    /** @\Doctrine\ORM\Mapping\OneToMany(targetEntity="Message", mappedBy="user", cascade={"persist"}) */
+    /**
+     * @\Doctrine\ORM\Mapping\OneToMany(targetEntity="Message", mappedBy="user", cascade={"persist"})
+     */
     protected $messages;
 
     /**
-     * @\Doctrine\ORM\Mapping\ManyToMany(targetEntity="User", mappedBy="myFriends")
+     * @\Doctrine\ORM\Mapping\ManyToMany(targetEntity="User", mappedBy="myFriends", cascade={"persist"})
      **/
     protected $friendsWithMe;
 
     /**
-     * @\Doctrine\ORM\Mapping\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
+     * @\Doctrine\ORM\Mapping\ManyToMany(targetEntity="User", inversedBy="friendsWithMe", cascade={"persist"})
      * @\Doctrine\ORM\Mapping\JoinTable(name="friend",
      *      joinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="friend_user_id", referencedColumnName="id")}
@@ -107,7 +111,7 @@ class User {
     }
 
     /**
-     * @return mixed
+     * @return User[]
      */
     public function getFriendsWithMe()
     {
@@ -115,7 +119,7 @@ class User {
     }
 
     /**
-     * @return mixed
+     * @return User[]
      */
     public function getMyFriends()
     {
