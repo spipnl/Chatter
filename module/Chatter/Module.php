@@ -4,7 +4,7 @@ namespace Chatter;
 use Chatter\Form\UserAddForm;
 use Chatter\Form\UserEditForm;
 use Chatter\Form\UserFieldset;
-use Chatter\Repository\UserRepository;
+use Chatter\Repository;
 use Chatter\Service\UserService;
 use Doctrine\ORM\EntityManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
@@ -36,14 +36,15 @@ class Module implements FormElementProviderInterface
     public function getServiceConfig() {
         return array(
             'factories' => array(
-                'userService' => function ($sl) {
+                'userRepository' => function ($sm) {
                     /** @var EntityManager $entityManager */
-                    $entityManager = $sl->get('doctrine.entitymanager.orm_default');
-                    $userService = new UserService();
-                    $userService->setEntityManager($entityManager);
-
+                    $entityManager = $sm->get('doctrine.entitymanager.orm_default');
                     $userRepository = $entityManager->getRepository('Chatter\Entity\User');
-                    $userService->setRepository($userRepository);
+                    return $userRepository;
+                },
+                'userService' => function ($sm) {
+                    $userService = new Service\UserService();
+                    $userService->setRepository($sm->get('userRepository'));
                     return $userService;
                 },
             ),
