@@ -5,9 +5,19 @@ use Chatter\Form\UserAddForm;
 use Chatter\Form\UserEditForm;
 use Chatter\Entity\User;
 use Chatter\Service\UserService;
+use Chatter\Service\UserServiceInterface;
+use Zend\Mvc\Controller\AbstractActionController;
 
 class UserController extends AbstractActionController
 {
+    /** @var UserService */
+    protected $userService;
+
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function indexAction()
     {
         /** @var UserService $userService */

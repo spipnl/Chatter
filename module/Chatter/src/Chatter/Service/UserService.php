@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityRepository;
 /**
  * User Service
  */
-class UserService
+class UserService implements UserServiceInterface
 {
     /**
      * @var null|EntityManager
