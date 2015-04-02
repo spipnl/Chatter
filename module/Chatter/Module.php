@@ -45,6 +45,7 @@ class Module implements FormElementProviderInterface
                 'userService' => function ($sm) {
                     $userService = new Service\UserService();
                     $userService->setRepository($sm->get('userRepository'));
+                    $userService->setEntityManager($sm->get('doctrine.entitymanager.orm_default'));
                     return $userService;
                 },
             ),
