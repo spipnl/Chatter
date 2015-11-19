@@ -1,8 +1,8 @@
 web:
-  build: .
-  ports:
-   - "8080:80"
-  volumes:
-   - ./public:/var/www/html
-  environment:
-    VIRTUAL_HOST: chatter.dev
+    build: .
+    ports:
+        - "8080:80"
+    volumes:
+        - ./:/var/www/html
+    environment:
+        VIRTUAL_HOST: chatter.dev
