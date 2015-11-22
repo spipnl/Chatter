@@ -30,6 +30,12 @@ docker-compose up -d
 
 This will create a container based on the `docker-compose.yml` configuration and run it as a daemon.
 
+The virtual host in the docker container has a server alias `chatter.dev`. For this to work, add the alias with the Docker ip address to your host file, e.g.:
+
+```
+192.168.99.100 chatter.dev
+```
+
 ###Project
 
 Copy (or rename) `config/autoload/local.php.dist` to `config/autoload/local.php`.
